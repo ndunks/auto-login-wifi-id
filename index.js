@@ -23,7 +23,7 @@ function checkConnection() {
                 if (response.status == 204) return true
                 if (typeof response.data == 'string') {
                     const match = response.data.match(/URL=(?<url>.*?)"/)
-                    if (match.groups?.url) {
+                    if (match.groups.url) {
                         lastRedirectUrl = match.groups.url
                         return false
                     }
@@ -75,7 +75,7 @@ async function doLogin() {
             }
         }).then(
             res => {
-                if (res.data?.result) {
+                if (res.data.result) {
                     console.log(res.data.message)
                 } else {
                     console.log('Login Gagal', res.data)
@@ -84,7 +84,7 @@ async function doLogin() {
         )
     }).catch(
         err => {
-            if (err.response?.status == 302) {
+            if (err.response.status == 302) {
                 console.log('OK, Login cached..')
                 return true
             }
@@ -105,5 +105,5 @@ async function main() {
     }
     setTimeout(main, 5000)
 }
-
+console.log('Watching internet connection..')
 main()
